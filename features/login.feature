@@ -10,3 +10,7 @@ Feature: Check the functionality of the login page
 # Scenariul 7: username corect + parola None
 # Scenariul 8: username incorect + parola None
 # Scenariul 9: username None + parola None
+
+  Scenario: Check that you can login into the application when providing correct credentials
+    Given I am on the jules login page
+    When I insert user name and password
