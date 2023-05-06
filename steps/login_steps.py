@@ -1,1 +1,32 @@
 from behave import *
+
+
+@given('I am on the jules login page')
+
+def step_impl(context):
+    """
+        CONTEXT este in primul rand un parametru pe care toate functiile/
+        implementarile de scenario steps il vor avea.
+        El reprezinta o cutiuta in care pot sa stochez toate obiectele
+        instantiate in fisierul environment.py
+        """
+    #Voi avea nevoie de: o instanta/un obiect al clasei LoginPage
+    #si sa apelez metoda navigate_to_login_page
+
+    context.login_page_object.navigate_to_login_page()
+
+
+@when('I insert user name and password')
+def step_impl(context):
+
+    context.login_page_object.insert_username()
+    context.login_page_object.insert_password()
+
+
+@when('I click login button')
+def step_impl(context):
+    context.login_page_object.click_login_button()
+
+@then('I can login into the jules app')
+def step_impl(context):
+    context.login_page_object.check_error_message()
