@@ -12,9 +12,9 @@ class LoginPage(BasePage):
     def navigate_to_login_page(self):
         self.chrome.get('https://jules.app/sign-in')
 
-    def insert_email(self):
-        self.chrome.find_element(*self.EMAIL).send_keys('adi300678@yahoo.com')
+    def insert_correct_email(self):
+        self.chrome.find_element(*self.EMAIL).send_keys('stoican.adrian@yahoo.com')
 
-    def insert_password(self):
+    def insert_correct_password(self):
         self.chrome.find_element(*self.PASSWORD).send_keys('P12345p!')
 

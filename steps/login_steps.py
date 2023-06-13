@@ -16,11 +16,11 @@ def step_impl(context):
     context.login_page_object.navigate_to_login_page()
 
 
-@when('I insert user name and password')
+@when('I insert correct user name and correct password')
 def step_impl(context):
 
-    context.login_page_object.insert_username()
-    context.login_page_object.insert_password()
+    context.login_page_object.insert_correct_email()
+    context.login_page_object.insert_correct_password()
 
 
 @when('I click login button')
@@ -29,4 +29,4 @@ def step_impl(context):
 
 @then('I can login into the jules app')
 def step_impl(context):
-    context.login_page_object.check_error_message()
+    context.login_page_object.check_current_url()

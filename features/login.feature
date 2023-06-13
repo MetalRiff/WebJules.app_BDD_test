@@ -13,6 +13,6 @@ Feature: Check the functionality of the login page
 
   Scenario: Check that you can login into the application when providing correct credentials
     Given I am on the jules login page
-    When I insert user name and password
+    When I insert correct user name and correct password
     And I click login button
     Then I can login into the jules app

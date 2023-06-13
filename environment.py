@@ -1,4 +1,4 @@
-from pages.login_page import LoginPage
+from page.login_page import LoginPage
 from browser import Browser
 
 
