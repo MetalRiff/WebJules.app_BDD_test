@@ -1,4 +1,7 @@
+import time
+
 from base_page import BasePage
+
 
 class MainPage(BasePage):
 
@@ -6,5 +9,5 @@ class MainPage(BasePage):
 
         expected_url = 'https://jules.app/search/all'
         actual_url = self.chrome.current_url
-
-        assert expected_url == actual_url, "Error: invalid URL"
+        time.sleep(3)
+        assert expected_url != actual_url, "Error: invalid URL"

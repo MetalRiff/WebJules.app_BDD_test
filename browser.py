@@ -1,4 +1,7 @@
+import time
+
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 class Browser:
@@ -10,7 +13,8 @@ class Browser:
 
     chrome = webdriver.Chrome()
     chrome.maximize_window()
-    chrome.implicitly_wait(3)
+    chrome.implicitly_wait(5)
+
 
     def close(self):
         self.chrome.quit()

@@ -1,18 +1,25 @@
 Feature: Check the functionality of the login page
 
 
-# Scenariul 1: username corect + parola corecta
-# Scenariul 2: username corect + parola incorecta
-# Scenariul 3: username incorect + parola corecta
-# Scenariul 4: username incorect + parola incorecta
-# Scenariul 5: username None + parola corecta
-# Scenariul 6: username None + parola incorecta
-# Scenariul 7: username corect + parola None
-# Scenariul 8: username incorect + parola None
-# Scenariul 9: username None + parola None
-
   Scenario: Check that you can login into the application when providing correct credentials
     Given I am on the jules login page
-    When I insert correct user name and correct password
+    When I insert correct email and correct password
     And I click login button
     Then I can login into the jules app
+    Then I can logout
+
+  Scenario: Check that you can login into the application when providing correct email and incorrect password
+    Given I am on the jules login page
+    When I insert correct email and incorrect password
+    And I click login button
+    Then I cannot login into the jules app
+
+  Scenario: Check that you can login into the application when providing incorrect email and correct password
+    Given I am on the jules login page
+    When I insert incorrect email and correct password
+    Then I cannot login into the jules app because no valid email was introduced
+
+  Scenario: Check that you can login into the application when providing correct email and no password
+    Given I am on the jules login page
+    When I insert correct email and no password
+    Then I cannot login into the jules app because no valid password was introduced
