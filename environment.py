@@ -1,5 +1,5 @@
 from page.login_page import LoginPage
-from page.main_page import MainPage
+from page.search_page import SearchPage
 from browser import Browser
 
 
@@ -12,7 +12,7 @@ def before_all(context):
 
     context.browser = Browser()
     context.login_page_object = LoginPage()
-    context.main_page_object = MainPage()
+    context.search_page_object = SearchPage()
 
 def after_all(context):
     """

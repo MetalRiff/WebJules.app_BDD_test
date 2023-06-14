@@ -2,7 +2,6 @@ from behave import *
 
 
 @given('I am on the jules login page')
-
 def step_impl(context):
     """
         CONTEXT este in primul rand un parametru pe care toate functiile/
@@ -29,6 +28,7 @@ def step_impl(context):
     context.login_page_object.insert_correct_email()
     context.login_page_object.insert_incorrect_password()
 
+
 @when('I insert incorrect email and correct password')
 def step_impl(context):
 
@@ -41,7 +41,7 @@ def step_impl(context):
     context.login_page_object.click_login_button()
 
 
-@when('I insert correct email and no password')
+@when('I insert correct email and delete password')
 def step_impl(context):
     context.login_page_object.insert_correct_email()
     context.login_page_object.insert_no_password()
@@ -49,7 +49,7 @@ def step_impl(context):
 
 @then('I can login into the jules app')
 def step_impl(context):
-    context.main_page_object.check_current_url()
+    context.search_page_object.check_current_page()
 
 
 @then('I cannot login into the jules app')
@@ -62,11 +62,8 @@ def step_impl(context):
     context.login_page_object.wrong_email_message()
 
 
-@then('I can logout')
-def step_impl(context):
-    context.login_page_object.click_logout_button()
-
-
-@then('I cannot login into the jules app because no valid password was introduced')
+@then('I cannot login into the jules app because no password was introduced')
 def step_impl(context):
     context.login_page_object.no_password_message()
+
+

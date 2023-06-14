@@ -15,6 +15,6 @@ class Browser:
     chrome.maximize_window()
     chrome.implicitly_wait(5)
 
-
     def close(self):
+
         self.chrome.quit()
