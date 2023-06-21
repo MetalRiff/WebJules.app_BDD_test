@@ -7,25 +7,19 @@ from base_page import BasePage
 class LoginPage(BasePage):
     EMAIL = (By.XPATH, '//*[@placeholder = "Enter your email"]')
     PASSWORD = (By.XPATH, '//*[@placeholder = "Enter your password"]')
-    BUTTON = (By.XPATH,'//*[@id="root"]/div/div[2]/form/div/div[3]/button/span[1]')
+    BUTTON = (By.XPATH, '//*[@class="MuiButton-label"]')
     ERROR = (By.XPATH, '//*[@id="client-snackbar"]/div/span')
-    WRONG_EMAIL = (By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[1]/div/p')
-    NO_PASSWORD = (By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[2]/div/p')
+    WRONG_EMAIL = (By.XPATH, '//p[contains(text(),"Please enter a valid email address!")]')
+    NO_PASSWORD = (By.XPATH, '//p[contains(text(),"Please enter your password!")]')
 
     def navigate_to_login_page(self):
         self.chrome.get('https://jules.app/sign-in')
 
-    def insert_correct_email(self):
-        self.chrome.find_element(*self.EMAIL).send_keys('stoican.adrian@yahoo.com')
+    def insert_email(self, email):
+        self.chrome.find_element(*self.EMAIL).send_keys(email)
 
-    def insert_incorrect_email(self):
-        self.chrome.find_element(*self.EMAIL).send_keys('incorect_email@test')
-
-    def insert_correct_password(self):
-        self.chrome.find_element(*self.PASSWORD).send_keys('P12345p!')
-
-    def insert_incorrect_password(self):
-        self.chrome.find_element(*self.PASSWORD).send_keys('P12345p!11')
+    def insert_password(self, password):
+        self.chrome.find_element(*self.PASSWORD).send_keys(password)
 
     def insert_no_password(self):
         self.chrome.find_element(*self.PASSWORD).send_keys('1')
@@ -37,9 +31,9 @@ class LoginPage(BasePage):
 
     def check_error_message(self):
         expected_error_message = 'Invalid email/password combination'
-        actual_error_message = self.chrome.find_element(*self.ERROR).text
-        time.sleep(1)
-        assert expected_error_message == actual_error_message, "Error: Incorrect error message"
+        actual_message = self.chrome.find_element(*self.ERROR).text
+        time.sleep(2)
+        assert expected_error_message == actual_message, "Error: Incorrect error message"
 
     def wrong_email_message(self):
         expected_message = 'Please enter a valid email address!'

@@ -9,31 +9,16 @@ def step_impl(context):
         El reprezinta o cutiuta in care pot sa stochez toate obiectele
         instantiate in fisierul environment.py
         """
-    #Voi avea nevoie de: o instanta/un obiect al clasei LoginPage
-    #si sa apelez metoda navigate_to_login_page
+    # Voi avea nevoie de: o instanta/un obiect al clasei LoginPage
+    # si sa apelez metoda navigate_to_login_page
 
     context.login_page_object.navigate_to_login_page()
 
 
-@when('I insert correct email and correct password')
-def step_impl(context):
-
-    context.login_page_object.insert_correct_email()
-    context.login_page_object.insert_correct_password()
-
-
-@when('I insert correct email and incorrect password')
-def step_impl(context):
-
-    context.login_page_object.insert_correct_email()
-    context.login_page_object.insert_incorrect_password()
-
-
-@when('I insert incorrect email and correct password')
-def step_impl(context):
-
-    context.login_page_object.insert_incorrect_email()
-    context.login_page_object.insert_correct_password()
+@when('I insert email "{email}" and password "{password}"')
+def step_impl(context, email, password):
+    context.login_page_object.insert_email(email)
+    context.login_page_object.insert_password(password)
 
 
 @when('I click login button')
@@ -41,9 +26,9 @@ def step_impl(context):
     context.login_page_object.click_login_button()
 
 
-@when('I insert correct email and delete password')
-def step_impl(context):
-    context.login_page_object.insert_correct_email()
+@when('I insert email "{email}" and delete password')
+def step_impl(context, email):
+    context.login_page_object.insert_email(email)
     context.login_page_object.insert_no_password()
 
 
@@ -52,7 +37,7 @@ def step_impl(context):
     context.search_page_object.check_current_page()
 
 
-@then('I cannot login into the jules app')
+@then('I cannot login into the jules app and I receive error')
 def step_impl(context):
     context.login_page_object.check_error_message()
 
@@ -65,5 +50,3 @@ def step_impl(context):
 @then('I cannot login into the jules app because no password was introduced')
 def step_impl(context):
     context.login_page_object.no_password_message()
-
-
