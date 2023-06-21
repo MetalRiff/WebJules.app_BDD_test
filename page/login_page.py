@@ -12,35 +12,43 @@ class LoginPage(BasePage):
     WRONG_EMAIL = (By.XPATH, '//p[contains(text(),"Please enter a valid email address!")]')
     NO_PASSWORD = (By.XPATH, '//p[contains(text(),"Please enter your password!")]')
 
+    # method to access the Login page
     def navigate_to_login_page(self):
         self.chrome.get('https://jules.app/sign-in')
 
+    # method to insert the email address in login page
     def insert_email(self, email):
         self.chrome.find_element(*self.EMAIL).send_keys(email)
 
+    # method to insert password in login page
     def insert_password(self, password):
         self.chrome.find_element(*self.PASSWORD).send_keys(password)
 
+    # method to remove/delete a password in login page
     def insert_no_password(self):
         self.chrome.find_element(*self.PASSWORD).send_keys('1')
         time.sleep(1)
         self.chrome.find_element(*self.PASSWORD).send_keys(Keys.BACK_SPACE)
 
+    # method to click on the login button in login page
     def click_login_button(self):
         self.chrome.find_element(*self.BUTTON).click()
 
+    # method to check if error message is displayed when invalid credentials are used for login
     def check_error_message(self):
         expected_error_message = 'Invalid email/password combination'
         actual_message = self.chrome.find_element(*self.ERROR).text
         time.sleep(2)
         assert expected_error_message == actual_message, "Error: Incorrect error message"
 
+    # method to check if error tooltip is displayed when invalid email is used for login
     def wrong_email_message(self):
         expected_message = 'Please enter a valid email address!'
         actual_message = self.chrome.find_element(*self.WRONG_EMAIL).text
         time.sleep(3)
         assert expected_message == actual_message, "Error: Incorrect error message"
 
+    # method to check if error tooltip is displayed when a password is deleted from login
     def no_password_message(self):
         expected_message = 'Please enter your password!'
         actual_message = self.chrome.find_element(*self.NO_PASSWORD).text
