@@ -1,4 +1,5 @@
 import time
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from base_page import BasePage
 
@@ -21,6 +22,7 @@ class SearchPage(BasePage):
     # method to select Record as filter
     def select_record_filter(self):
         self.chrome.find_element(*self.RECORD).click()
+        time.sleep(5)
 
     # method to select Type as filter
     def select_type_filter(self):
@@ -38,6 +40,10 @@ class SearchPage(BasePage):
     def select_connection_filter(self):
         self.chrome.find_element(*self.CONNECTION).click()
 
+    # method to delete all recorded items
+    def delete_record_filter(self):
+        self.chrome.find_element(*self.RECORD).click()
+
     # method to check that we are on the Search page
     def check_current_page(self):
         expected = 'Search'
@@ -46,6 +52,11 @@ class SearchPage(BasePage):
 
     # method to Logout from Search page
     def click_logout_button(self):
+
+        # load search page in browser
+        self.chrome.get('https://jules.app/search/all')
+        time.sleep(1)
+
         # access user actions menu
         self.chrome.find_element(*self.USER_ACTIONS).click()
         time.sleep(1)
@@ -54,7 +65,7 @@ class SearchPage(BasePage):
         self.chrome.find_element(*self.LOGOUT).click()
         time.sleep(1)
 
-        # confirm logout
+        # confirm logout and verify if the logout was done
         self.chrome.find_element(*self.CONFIRM).click()
         time.sleep(3)
 

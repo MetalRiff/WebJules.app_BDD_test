@@ -17,9 +17,11 @@ class AddPage(BasePage):
     INPUT = (By.XPATH, '//*[@class="MuiInputBase-input MuiFilledInput-input"]')
     FINISH = (By.XPATH, '//span[contains(text(),"Finish")]')
 
+    # method to access the Add page
     def access_add_page(self):
         self.chrome.find_element(*self.ADD).click()
 
+    # method to add Airplane item named A380
     def add_item_to_records(self):
         self.chrome.find_element(*self.ITEM).click()
         self.chrome.find_element(*self.MY_RECORD).click()
@@ -38,4 +40,4 @@ class AddPage(BasePage):
         self.chrome.find_element(*self.SKIP_AND_SAVE).click()
         time.sleep(2)
         self.chrome.find_element(*self.FINISH).click()
-        time.sleep(2)
+        time.sleep(1)
