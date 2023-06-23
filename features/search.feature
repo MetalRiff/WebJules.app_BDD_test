@@ -42,6 +42,5 @@ Feature: Check the base functionality of the search page
     Given I am on the jules login page
     When I insert email "stoican.adrian@yahoo.com" and password "P12345p!"
     And I click login button
-    Then I can select Record filter
-    Then I can select Personal Property and delete all
-    #Then I can logout
+    Then I can delete A380 airplane
+    Then I can logout

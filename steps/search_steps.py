@@ -31,7 +31,6 @@ def step_impl(context):
     context.search_page_object.select_connection_filter()
 
 
-@then('I can select Personal Property and delete all')
+@then('I can delete A380 airplane')
 def step_impl(context):
-    context.search_page_object.click_filter_button()
-    context.search_page_object.select_record_filter()
+    context.search_page_object.delete_item()
