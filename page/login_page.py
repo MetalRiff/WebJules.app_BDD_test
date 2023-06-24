@@ -5,6 +5,7 @@ from base_page import BasePage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class LoginPage(BasePage):
     EMAIL = (By.XPATH, '//*[@placeholder = "Enter your email"]')
     PASSWORD = (By.XPATH, '//*[@placeholder = "Enter your password"]')
@@ -38,11 +39,11 @@ class LoginPage(BasePage):
     # method to check if error message is displayed when invalid credentials are used for login
     def check_error_message(self):
         expected_error_message = 'Invalid email/password combination'
-        
+
         erorr_message = self.chrome.find_element(*self.ERROR)
-        WebDriverWait(self.chrome,10).until(EC.visibility_of(erorr_message))
+        WebDriverWait(self.chrome, 10).until(EC.visibility_of(erorr_message))
         actual_message = erorr_message.text
-        
+
         assert expected_error_message == actual_message, "Error: Incorrect error message"
 
     # method to check if error tooltip is displayed when invalid email is used for login
