@@ -2,7 +2,6 @@ import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from base_page import BasePage
-from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -25,9 +24,11 @@ class AddPage(BasePage):
     def access_add_page(self):
         self.chrome.find_element(*self.ADD).click()
 
-    # method to close the add page
+    # method to abort add via close
     def close_add(self):
-        self.chrome.find_element(*self.CLOSE_ADD_ITEM).click()
+        close = self.chrome.find_element(*self.CLOSE_ADD_ITEM)
+        WebDriverWait(self.chrome,1).until(EC.element_to_be_clickable(close))
+        close.click()
 
     # method to add Airplane items from a list
     def add_item_to_records(self):

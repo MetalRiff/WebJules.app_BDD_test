@@ -1,6 +1,6 @@
 Feature: Check the base functionality of the add page
 
-
+  @abort_add
   Scenario: Check that you can access Add page
       Given I am on the jules login page
       When I insert email "stoican.adrian@yahoo.com" and password "P12345p!"
@@ -9,7 +9,8 @@ Feature: Check the base functionality of the add page
       Then I can click the Close button
       Then I can logout
 
-    Scenario: Check that you can add multiple items
+  @add_items
+  Scenario: Check that you can add multiple items
       Given I am on the jules login page
       When I insert email "stoican.adrian@yahoo.com" and password "P12345p!"
       And I click login button

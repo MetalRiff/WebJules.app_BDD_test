@@ -38,6 +38,7 @@ Feature: Check the base functionality of the search page
     Then I can select Connection filter
     Then I can logout
 
+  @delete_item
   Scenario: Delete recorded item
     Given I am on the jules login page
     When I insert email "stoican.adrian@yahoo.com" and password "P12345p!"
